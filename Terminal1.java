@@ -16,7 +16,7 @@ public class Terminal1 extends javax.swing.JFrame {
         
     }
     
-                     
+    // UI stuff               
     private void initComponents()
     {
 
@@ -62,7 +62,7 @@ public class Terminal1 extends javax.swing.JFrame {
         pack();
     }                       
 
-    
+    //Here is my code to work and debug
     void execute_command()
     {
         cmd_input = jTextField1.getText();
@@ -99,6 +99,7 @@ public class Terminal1 extends javax.swing.JFrame {
                             
     }
 
+    //Event to capture keys and Enter keys
     private void jTextField1KeyPressed(java.awt.event.KeyEvent evt)                                       
     {                                           
         int key = evt.getKeyCode();
@@ -113,7 +114,8 @@ public class Terminal1 extends javax.swing.JFrame {
 
     }                                      
 
-        
+    
+    //main()  and Look & feel
     public static void main(String args[])
     {
     	
