@@ -87,7 +87,15 @@ public class Terminal1 extends javax.swing.JFrame {
                 jTextArea1.append("\n");
             }
           } 
-        catch (Exception e) {e.printStackTrace();} 
+        catch (Exception e) {
+        	jTextArea1.setText("");
+        	 //line = "error occurred";
+        	 line = e.toString();
+        	 System.out.println(line);
+             jTextArea1.append(line);
+             jTextArea1.append("\n");
+        
+        } 
                             
     }
 
