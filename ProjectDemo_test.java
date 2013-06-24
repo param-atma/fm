@@ -1,8 +1,11 @@
+import java.awt.Desktop;
 import java.awt.event.KeyEvent;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.InputStreamReader;
+import java.util.List;
 
+import javax.swing.SwingWorker;
 import javax.swing.UIManager;
 import javax.swing.filechooser.FileSystemView;
 import javax.swing.tree.DefaultMutableTreeNode;
@@ -15,6 +18,11 @@ import javax.swing.tree.TreePath;
  * @author sridhar
  */
 public class ProjectDemo_test extends javax.swing.JFrame {
+	
+	FileSystemView fileSystemView;
+	File currentFile;
+	DefaultTreeModel treeModel;    	
+	Desktop desktop;
 
     public ProjectDemo_test()
     {
@@ -50,6 +58,9 @@ public class ProjectDemo_test extends javax.swing.JFrame {
         jTextArea_treeDisplay.setRows(5);
         jScrollPane_right.setViewportView(jTextArea_treeDisplay);
         
+        fileSystemView = FileSystemView.getFileSystemView();
+        desktop = Desktop.getDesktop();
+        
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("File Dash Board");        
           
@@ -80,9 +91,16 @@ public class ProjectDemo_test extends javax.swing.JFrame {
         //Listening to selection (Keyboard or mouse) 
         jTree1.addTreeSelectionListener(new javax.swing.event.TreeSelectionListener()
         {
-            public void valueChanged(javax.swing.event.TreeSelectionEvent evt)
-            {
-                jTree1ValueChanged(evt);            }
+            public void valueChanged(javax.swing.event.TreeSelectionEvent evt) {
+            	DefaultMutableTreeNode node =
+                        (DefaultMutableTreeNode)evt.getPath().getLastPathComponent();    	 
+            	            	           
+            	 showChildren(node);
+                                  
+            	 System.out.println(node);
+            	 jTextArea_treeDisplay.setText(node.toString()); 
+                
+            }
         });
         
 
@@ -132,27 +150,45 @@ public class ProjectDemo_test extends javax.swing.JFrame {
         pack();
     }                      
 
-    //Displaying after listening to the key
-    private void jTree1ValueChanged(javax.swing.event.TreeSelectionEvent evt)                         
-    {                                        
-        //String nodePath=evt.getPath().toString();
-        TreePath[] paths = evt.getPaths();
+   private void showChildren(final DefaultMutableTreeNode node) {
+   	jTree1.setEnabled(false);
+   	
+       SwingWorker<Void, File> worker = new SwingWorker<Void, File>() {
+           @Override
+           public Void doInBackground() {
+               File file = (File) node.getUserObject();
+               if (file.isDirectory()) {
+                   File[] files = fileSystemView.getFiles(file, true); //!!
+                   if (node.isLeaf()) {
+                       for (File child : files) {
+                           if (child.isDirectory()) {
+                               publish(child);
+                           }
+                       }
+                   }
+                 // System.out.println(files);
+                   //setTableData(files);
+               }
+               return null;
+           }
 
-        for (int i=0; i < paths.length; i++) {
-            
-            if (evt.isAddedPath(i)) {
-                     
-                     String node=paths[i].getLastPathComponent().toString();
-                     System.out.println(node);
-                     jTextArea_treeDisplay.setText(node);
-                     break;
-            } 
-            else{
-                     break;
-              }
-        }             
-    	// TODO add your handling code here:
-    }                                   
+           @Override
+           protected void process(List<File> chunks) {
+               for (File child : chunks) {
+                   node.add(new DefaultMutableTreeNode(child));
+               }
+           }
+
+           @Override
+           protected void done() {
+           	
+           	jTree1.setEnabled(true);
+           }
+       };
+       worker.execute();// TODO Auto-generated method stub
+		
+	}
+                                  
 
     private void jTextField1KeyPressed(java.awt.event.KeyEvent evt)                                    
     {                                           
@@ -202,7 +238,7 @@ public class ProjectDemo_test extends javax.swing.JFrame {
         }                             
     }
    
-    
+    	
     public static void main(String args[])
     {
         try {
