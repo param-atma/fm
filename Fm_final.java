@@ -63,7 +63,7 @@ public class Fm_final extends javax.swing.JFrame {
         copyButton = new javax.swing.JButton();
         cutButton = new javax.swing.JButton();
         newButton = new javax.swing.JButton();
-        pasteButton = new javax.swing.JButton();
+        deleteButton = new javax.swing.JButton();
         jScrollPane5 = new javax.swing.JScrollPane();
         jTextArea_belowTree = new javax.swing.JTextArea();
 
@@ -234,13 +234,13 @@ public class Fm_final extends javax.swing.JFrame {
             }
         });
 
-        pasteButton.setIcon(new javax.swing.ImageIcon("/home/sridhar/dump/workspace/icons/paste.png")); // NOI18N
-        pasteButton.setToolTipText("Paste");
-        pasteButton.addActionListener(new java.awt.event.ActionListener()
+        deleteButton.setIcon(new javax.swing.ImageIcon("/home/sridhar/dump/workspace/icons/del.jpg")); // NOI18N
+        deleteButton.setToolTipText("Paste");
+        deleteButton.addActionListener(new java.awt.event.ActionListener()
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
             {
-                pasteButtonActionPerformed(evt);
+                deleteButtonActionPerformed(evt);
             }
         });
 
@@ -291,7 +291,7 @@ public class Fm_final extends javax.swing.JFrame {
                         .addComponent(jPanelTable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(24, 24, 24))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane4)
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -301,7 +301,7 @@ public class Fm_final extends javax.swing.JFrame {
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(copyButton)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(pasteButton)))
+                                .addComponent(deleteButton)))
                         .addContainerGap())))
         );
         layout.setVerticalGroup(
@@ -319,7 +319,7 @@ public class Fm_final extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(copyButton)
-                                    .addComponent(pasteButton)))
+                                    .addComponent(deleteButton)))
                             .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jPanelTable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -477,21 +477,24 @@ public class Fm_final extends javax.swing.JFrame {
 
     private void copyButtonActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_copyButtonActionPerformed
     {//GEN-HEADEREND:event_copyButtonActionPerformed
-        // TODO add your handling code here:
+        
+        new copyFile().setVisible(true);
     }//GEN-LAST:event_copyButtonActionPerformed
 
     private void cutButtonActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_cutButtonActionPerformed
     {//GEN-HEADEREND:event_cutButtonActionPerformed
-        // TODO add your handling code here:
+        new moveFile().setVisible(true);
     }//GEN-LAST:event_cutButtonActionPerformed
 
-    private void pasteButtonActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_pasteButtonActionPerformed
-    {//GEN-HEADEREND:event_pasteButtonActionPerformed
+    private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_deleteButtonActionPerformed
+    {//GEN-HEADEREND:event_deleteButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_pasteButtonActionPerformed
+    }//GEN-LAST:event_deleteButtonActionPerformed
 
     private void newButtonActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_newButtonActionPerformed
     {//GEN-HEADEREND:event_newButtonActionPerformed
+
+        new newFile().setVisible(true);
         // TODO add your handling code here:
     }//GEN-LAST:event_newButtonActionPerformed
 
@@ -534,6 +537,7 @@ public class Fm_final extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton copyButton;
     private javax.swing.JButton cutButton;
+    private javax.swing.JButton deleteButton;
     private javax.swing.JEditorPane jEditorPaneFolderPath;
     private javax.swing.JPanel jPanelTable;
     private javax.swing.JScrollPane jScrollPane1;
@@ -547,7 +551,6 @@ public class Fm_final extends javax.swing.JFrame {
     private javax.swing.JTextArea jTextArea_tree_file_properties;
     private javax.swing.JTextArea jTextArea_viewer;
     private javax.swing.JButton newButton;
-    private javax.swing.JButton pasteButton;
     private javax.swing.JTable table;
     private javax.swing.JTextField terminalInput;
     private javax.swing.JTextArea terminalOutput;
