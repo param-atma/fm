@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package newpackage;
 
 import java.awt.Component;
@@ -377,7 +373,7 @@ public class Fm_final extends javax.swing.JFrame {
                 tree.setEnabled(true);
             }
         };
-        worker.execute();// TODO Auto-generated method stub
+        worker.execute();
 
     }
     
